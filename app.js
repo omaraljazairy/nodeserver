@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
+const cors = require('cors')
 
 
 const app = express();
@@ -11,6 +12,14 @@ const app = express();
 // setup the view
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
+const corsOptions = {
+    credentials: true,
+    origin: [
+        'http://127.0.0.1:3000',
+    ],
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+}
+app.use(cors(corsOptions))
 
 // Body parser
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -20,7 +29,6 @@ app.use(bodyParser.json());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  //   res.render('contact', {layout: false, msg: 'Message received'});
   res.json({
       status: 'OK',
       message: 'Now I know why'
@@ -28,12 +36,23 @@ app.get('/', (req, res) => {
 
 });
 
+// app.post('/send', (req, res) => {
+//     res.json({
+//         status: 'OK',
+//         message: 'Now I know why'
+//     });
+  
+//   });
+/**
+ * @todo refactor
+ */  
 app.post('/send', (req, res) => {
+
   console.log('url: ', req.url);
   console.log('params: ',req.params);
   console.log('body: ',req.body);
   const output = `
-    <p>You have a new client request</p>
+    <p>You have a new client request from ${req.body.companyName} </p>
     <h3>Details</h3>
     <ul>
       <li>Bedrijfnaam: ${req.body.companyName} </li>
@@ -74,9 +93,9 @@ app.post('/send', (req, res) => {
     console.log('Message sent info: %s', info);
     console.log('Message sent: %s', info.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-    res.json({response: 'Message Sent'});
+    res.json({message: 'We hebben uw aanvraag ontvangen.'});
   })
   
 
 })
-app.listen(3002, () => console.log('My Server started ...'));
+app.listen(5002, () => console.log('My Server started ...'));
