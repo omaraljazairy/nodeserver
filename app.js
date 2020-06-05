@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 const corsOptions = {
     credentials: true,
     origin: [
-        'https://wipecardetailing.nl',
+        'http://127.0.0.1:3000',
     ],
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
 }
