@@ -16,6 +16,7 @@ const corsOptions = {
     credentials: true,
     origin: [
         'http://127.0.0.1:3000',
+        'http://127.0.0.1'
     ],
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
 }
