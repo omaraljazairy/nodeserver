@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 /**
  * @todo refactor
  */  
-app.post('/send', (req, res) => {
+app.post('/nodeapi/send', (req, res) => {
 
   console.log('url: ', req.url);
   console.log('params: ',req.params);
