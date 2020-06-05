@@ -15,9 +15,7 @@ app.set('view engine', 'handlebars');
 const corsOptions = {
     credentials: true,
     origin: [
-        'http://127.0.0.1:3000',
-        'http://127.0.0.1',
-        'http://localhost'
+        'https://wipecardetailing.nl'
     ],
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
 }
@@ -49,7 +47,6 @@ app.get('/', (req, res) => {
  * @todo refactor
  */  
 app.post('/nodeapi/send', (req, res) => {
-
   console.log('url: ', req.url);
   console.log('params: ',req.params);
   console.log('body: ',req.body);
