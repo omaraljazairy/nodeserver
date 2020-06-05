@@ -15,7 +15,7 @@ app.set('view engine', 'handlebars');
 const corsOptions = {
     credentials: true,
     origin: [
-        'http://127.0.0.1:3000',
+        'https://127.0.0.1',
     ],
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
 }
@@ -98,4 +98,4 @@ app.post('/send', (req, res) => {
   
 
 })
-app.listen(5002, () => console.log('My Server started ...'));
+app.listen(3002, () => console.log('My Server started ...'));
